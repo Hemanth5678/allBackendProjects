@@ -2,6 +2,8 @@ package com.zee.zee5app;
 
 import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.service.UserService;
+import com.zee.zee5app.service.UserService2;
+import com.zee.zee5app.service.impl.UserServiceImpl;
 import com.zee.zee5app.service.SubscriptionService;
 import com.zee.zee5app.dto.Subscriptions;
 
@@ -16,12 +18,6 @@ public class Main {
 		// Register: Classname. register : reference to object..store address of object. 
 		//new: create object.. Register(): constructor(maybe default constructor).
 		
-		/*register.setFirstName("Hemu");
-		register.setLastName("A V");
-		register.setEmail("hemanth@gmail.com");
-		register.setPassword("password");
-		System.out.println(register);
-		System.out.println(register.getEmail());*/
 		UserService service = UserService.getInstance();
 		SubscriptionService service1 = SubscriptionService.getInstance();
 		
@@ -111,6 +107,19 @@ public class Main {
 		}
 		//String result = service.addUser(register);
 		//System.out.println(result);
+		
+		/*UserService2 service2 = UserServiceImpl.getInstance();
+		for(int i=1;i<=12;i++) {
+			Register register5= new Register();
+			register5.setId("hemu"+i);
+			register5.setFirstName("Hemu");
+			register5.setLastName("A V");
+			register5.setEmail("hemanth@gmail.com"+i);
+			register5.setPassword("iforgotit"+i);
+			String result4 = service2.addUser(register5);
+			System.out.println(result4);
+			System.out.println(register5);
+		}*/
 	}
 
 }

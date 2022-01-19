@@ -13,12 +13,26 @@ public class UserRepositoryimpl implements UserRepository2 {
 	private static UserRepository2 repository;
 	
 	public static UserRepository2 getInstance() {
-		return null;
+		if(repository==null) {
+			repository=new UserRepositoryimpl();
+			return repository;
+		}
+		return repository;
 	}
+	private Register[] registers = new Register[10];
+	private static int count = -1;
 	@Override
 	public String addUser(Register register) {
 		// TODO Auto-generated method stub
-		return null;
+		if(count==registers.length-1) {
+			Register temp[] = new Register[registers.length*2];
+			System.arraycopy(registers, 0, temp, 0, registers.length);
+			registers=temp;
+			registers[++count]=register;
+			return "successssssssss";
+		}
+		registers[++count]= register;
+		return "success";
 	}
 
 	@Override
