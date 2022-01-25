@@ -1,37 +1,17 @@
 package com.zee.zee5app.service;
-import com.zee.zee5app.repository.SubscriptionRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.dto.Subscriptions;
 
-public class SubscriptionService  {
-	private SubscriptionRepository repository =SubscriptionRepository.getInstance();
-	private SubscriptionService() {
-		
-	}
-	
-	static SubscriptionService service = null;
-	public static SubscriptionService getInstance() {
-		if(service==null)
-				service=new SubscriptionService();
-		return service;
-	}
-	
-	public String addSubscription(Subscriptions subscription){
-		return this.repository.addSubscription(subscription);
-	}
-	
-	public String updateSubscription(String id,Subscriptions subscription){
-		return this.repository.updateSubscription(id,subscription);
-	}
-	
-	public Subscriptions getUserById(String Id) {
-		return repository.getUserById(Id);
-	}
-	
-	public Subscriptions[] getUsers(){
-		return repository.getUsers();
-	}
-	
-	public String deleteSubscription(String id) {
-		return this.repository.deleteSubscription(id);
-	}
+public interface SubscriptionService {
+	public String addSubscription(Subscriptions Subscriptions);
+	public String updateSubscription(String id, Subscriptions Subscriptions);
+	public Optional<Subscriptions> getSubscriptionById(String id) throws IdNotFoundException;
+	public Subscriptions[] getAllSubscriptions();
+	public String deleteSubscriptionById(String id) throws IdNotFoundException;
+	public ArrayList<Subscriptions> getAllSubscriptionDetails();
 }
