@@ -1,5 +1,6 @@
 package com.zee.zee5app.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +14,11 @@ import com.zee.zee5app.service.SubscriptionService;
 public class SubscriptionServiceImpl implements SubscriptionService{
 	private static SubscriptionService service;
 	//private static SubscriptionServiceImpl repository;
+	public SubscriptionServiceImpl() throws IOException{
+		// TODO Auto-generated constructor stub
+	}
 	
-	public static SubscriptionService getInstance() {
+	public static SubscriptionService getInstance() throws IOException {
 		if(service==null) {
 			service=new SubscriptionServiceImpl();
 		}

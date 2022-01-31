@@ -187,7 +187,7 @@ public class UserRepositoryimpl implements UserRepository {
 		ResultSet resultSet =null;
 		ArrayList<Register> arraylist = new ArrayList<>();
 		
-		String selectStatement="select * from Register where regid=?";
+		String selectStatement="select * from Register";
 		
 		connection = dbutils.getConnection();
 		try {
@@ -222,8 +222,8 @@ public class UserRepositoryimpl implements UserRepository {
 	@Override
 	public String deleteUserById(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+		Connection connection;
+		PreparedStatement preparedStatement;
 		//ResultSet resultSet =null;
 		
 		String deleteStatement="delete from Register where regid=?";
@@ -237,21 +237,38 @@ public class UserRepositoryimpl implements UserRepository {
 			
 			if(result>0) {//next is used to traverse the Resultset
 				
-				return "success";
+				
+				String res = loginRepository.deleteCredentials(id);
+				if(res.equals("success")) {
+					connection.commit();
+					return "success";
+				}
+				else {
+					connection.rollback();
+					return res;
+				}
 			}
-			else
+			else {
+				connection.rollback();
 				return "failure";
+			}
+		
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 		finally {
 			dbutils.closeConnection(connection);
 		}
 		return "failure";
+	
+	
 	}
-	
-	
-	
 }

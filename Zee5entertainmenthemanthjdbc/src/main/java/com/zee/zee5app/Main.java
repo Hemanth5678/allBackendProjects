@@ -2,6 +2,7 @@ package com.zee.zee5app;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,15 +29,18 @@ public class Main {
 
 	public static void main(String[] args) throws IdNotFoundException {
 		
-		try {
+		/*try {		//change roles
 			LoginService service = LoginServiceImpl.getInstance();
 			System.out.println(service.changeRole("hemulol@gmail.com", ROLE.ROLE_ADMIN));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
+		
+		
 		/*UserService service;
-		try {
+		try {			//getalluserdetails
 			service = UserServiceImpl.getInstance();
 			Optional<List<Register>> optional = service.getAllUserDetails();
 			if(optional.isEmpty()) {
@@ -52,10 +56,42 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		MoviesService service; 
+		try {			//getall movies details
+			service = MoviesServiceImpl.getInstance();
+			HashSet<Movies> optional = service.getAllMovieDetails();
+			if(optional.isEmpty()) {
+				System.out.println("there are no records");
+			}
+			else {
+				optional.forEach(e->System.out.println(e));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
-		/*try {//adduser
+		/*MoviesService service;   //get movie by id
+		try {			//getall movies details
+			service = MoviesServiceImpl.getInstance();
+			Optional<Movies> optional = service.getMovieById("mov001");
+			if(optional.isEmpty()) {
+				System.out.println("there are no records");
+			}
+			else {
+				System.out.println(optional);
+				//optional.forEach(e->System.out.println(e));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+		
+		
+		/*try {   	//adduser
 			Register register= new Register("Hemu0007","Hemanth","A V","hemulol3@gmail.com","iforgotit");
 			register.setContactNumber(new BigDecimal("9975477764"));
 			
@@ -70,16 +106,50 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		/*try {   		//add movies
+			Movies movies= new Movies("mov001","Titanic","18","Kate,leonardo","romantic","120",null,"12-01-1999","english");
+			
+			MoviesService service = MoviesServiceImpl.getInstance();
+			
+			String result = service.addMovie(movies);
+			System.out.println(result);
+		} catch (InvalidIdLengthException | InvalidNameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (LocationNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		
-		/*try {
+		/*try { 		 //deleteuser
 			UserService service = UserServiceImpl.getInstance();
-			String result = service.deleteUserById("Hemu0003");
+			String result = service.deleteUserById("Hemu0005");
+			System.out.println(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		/*try { 		 //deletemovie
+			MoviesService service = MoviesServiceImpl.getInstance();
+			String result = service.deleteMovieById("mov001");
 			System.out.println(result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
 		
+		
+		/*try {
+			LoginService service = LoginServiceImpl.getInstance();
+			String result = service.deleteCredentials("Hemu0004");
+			System.out.println(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 		/*try {//getuserbyid
 			UserService service = UserServiceImpl.getInstance();
 			Optional<Register> register =service.getUserById("Hemu00005");

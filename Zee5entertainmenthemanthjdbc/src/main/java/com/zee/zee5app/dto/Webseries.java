@@ -18,23 +18,29 @@ public class Webseries implements Comparable<Webseries>{
 			//@Setter(value = AccessLevel.NONE)
 			private String Name;
 			//@Setter(value = AccessLevel.NONE)
+			private String agelimit;
 			private String cast;
-			private String Releasedate;
-			private String trailer;
-			private String language;
+			private String genre;
 			private String length;
+			//private String Releasedate;
+			private String trailer;
+			private String Releasedate;
+			private String language;
+			private String noofepisodes;
 			private String Location;
 			//noofepisodes
-			public Webseries(String id, String Name, String cast, String Releasedate, String trailer, String language, String length, String Location) throws InvalidNameException, InvalidIdLengthException, LocationNotFoundException {
+			public Webseries(String id, String Name, String agelimit, String cast ,String genre, String length, String trailer, String Releasedate, String language,String noofepisodes) throws InvalidNameException, InvalidIdLengthException, LocationNotFoundException {
 				super();
 				this.setId(id);
 				this.setName(Name);
+				this.setAgelimit(agelimit);
 				this.cast = cast;
-				this.Releasedate = Releasedate;
-				this.trailer = trailer;
-				this.language = language;
+				this.genre = genre;
 				this.length = length;
-				this.setLocation(Location);
+				this.trailer = trailer;
+				this.Releasedate = Releasedate;
+				this.language = language;
+				this.noofepisodes = noofepisodes;
 			}
 			
 			public Webseries() {

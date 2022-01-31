@@ -1,5 +1,6 @@
 package com.zee.zee5app.service.impl;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class MoviesServiceImpl implements MoviesService{
 	private static MoviesService service;
 	//private static MovieserviceImpl repository;
 	
-	public static MoviesService getInstance() {
+	public static MoviesService getInstance() throws IOException {
 		if(service==null) {
 			service=new MoviesServiceImpl();
 		}
@@ -25,6 +26,10 @@ public class MoviesServiceImpl implements MoviesService{
 	}
 	MoviesRepository MoviesRepository = MoviesRepositoryImpl.getInstance();
 
+	public MoviesServiceImpl() throws IOException{
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public String addMovie(Movies Movies) {
 		// TODO Auto-generated method stub

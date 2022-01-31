@@ -1,5 +1,6 @@
 package com.zee.zee5app.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,11 @@ public class WebseriesServiceImpl implements WebseriesService{
 	private static WebseriesService service;
 	//private static WebserieserviceImpl repository;
 	
-	public static WebseriesService getInstance() {
+	public WebseriesServiceImpl() throws IOException{
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static WebseriesService getInstance() throws IOException {
 		if(service==null) {
 			service=new WebseriesServiceImpl();
 		}

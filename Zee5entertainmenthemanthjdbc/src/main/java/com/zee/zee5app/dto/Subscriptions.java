@@ -16,24 +16,28 @@ import lombok.ToString;
 public class Subscriptions implements Comparable<Subscriptions>{
 	//@Setter(value = AccessLevel.NONE)
 	private String id;
-	private String dateofpurchase;
-	private String status;
-	private String packcountry;
+	private String dop;
+	private String expiry;
+	private String amount;
 	private String paymentmode;
+	private String status;
+	private String subscriptiontype;
+	
 	private String autorenewal;
-	private String expirydate;
 	//@Setter(value = AccessLevel.NONE)
-	private String amountpaid;
-	public Subscriptions(String id, String dateofpurchase, String status, String packcountry, String paymentmode, String autorenewal, String expirydate, String amountpaid) throws InvalidIdLengthException, InvalidAmountException {
+	
+	private String regid;
+	public Subscriptions(String id, String dop, String status, String paymentmode, String autorenewal, String expiry, String amount, String subscriptiontype, String regid) throws InvalidIdLengthException, InvalidAmountException {
 		super();
 		this.setId(id);
-		this.dateofpurchase = dateofpurchase;
+		this.dop = dop;
 		this.status = status;
-		this.packcountry = packcountry;
 		this.paymentmode = paymentmode;
 		this.autorenewal = autorenewal;
-		this.expirydate = expirydate;
-		this.setAmountpaid(amountpaid);
+		this.expiry = expiry;
+		this.setamount(amount);
+		this.subscriptiontype=subscriptiontype;
+		this.regid = regid;
 	}
 	public Subscriptions() {
 		// TODO Auto-generated constructor stub
@@ -41,18 +45,18 @@ public class Subscriptions implements Comparable<Subscriptions>{
 	/*private void setstatus(String status2) throws InvalidNameException {
 		// TODO Auto-generated method stub
 		if(status==null || status=="" || status.length()<2) {
-			throw new InvalidNameException("dateofpurchase not valid");
+			throw new InvalidNameException("dop not valid");
 		}
 		this.status = status;
 		
 	}*/
 	
-	/*private void setdateofpurchase(String dateofpurchase2) throws InvalidNameException {
+	/*private void setdop(String dop2) throws InvalidNameException {
 		// TODO Auto-generated method stub
-		if(dateofpurchase==null || dateofpurchase=="" || dateofpurchase.length()<2) {
-			throw new InvalidNameException("dateofpurchase not valid");
+		if(dop==null || dop=="" || dop.length()<2) {
+			throw new InvalidNameException("dop not valid");
 		}
-		this.dateofpurchase = dateofpurchase;
+		this.dop = dop;
 		
 	}*/
 	
@@ -65,17 +69,17 @@ public class Subscriptions implements Comparable<Subscriptions>{
 		this.id=Id;
 	}
 	
-	public void setAmountpaid(String amountpaid) throws InvalidAmountException {
+	public void setamount(String amount) throws InvalidAmountException {
 		// TODO Auto-generated method stub
-		if(Integer.valueOf(amountpaid)<599) {
+		if(Integer.valueOf(amount)<599) {
 			
 			throw new InvalidAmountException("amount is less than Rs.599 . Kindly pay 599 ");
 		}
-		if(Integer.valueOf(amountpaid)>599) {
+		if(Integer.valueOf(amount)>599) {
 			
 			throw new InvalidAmountException("amount is greater than Rs.599 . Kindly contact customer care for refund ");
 		}
-		this.amountpaid=amountpaid;
+		this.amount=amount;
 	}
 	
 	@Override

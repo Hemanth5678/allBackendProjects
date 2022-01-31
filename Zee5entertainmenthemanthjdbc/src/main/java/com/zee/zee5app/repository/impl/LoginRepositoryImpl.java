@@ -69,9 +69,41 @@ public class LoginRepositoryImpl implements LoginRepository{
 	}
 
 	@Override
-	public String deleteCredentials(String userName) {
+	public String deleteCredentials(String userName) {// didnt change this, Im passing regid instead of username
 		// TODO Auto-generated method stub
-		return null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		//ResultSet resultSet =null;
+		
+		String deleteStatement="delete from login where regId=?";
+		
+		connection = dbutils.getConnection();
+		try {
+			preparedStatement=connection.prepareStatement(deleteStatement);
+			preparedStatement.setString(1,userName);
+			
+			int result = preparedStatement.executeUpdate();
+			
+			if(result>0) {//next is used to traverse the Resultset
+				//connection.commit();
+				return "success";
+			}
+			else {
+				connection.rollback();
+				return "failure";
+			}
+		} catch (SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			//dbutils.closeConnection(connection);
+		}
+		return "failure";
 	}
 
 	@Override

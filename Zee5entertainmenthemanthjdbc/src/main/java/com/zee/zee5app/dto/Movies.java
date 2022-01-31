@@ -18,24 +18,28 @@ public class Movies implements Comparable<Movies>{
 		//@Setter(value = AccessLevel.NONE)
 		private String Name;
 		//@Setter(value = AccessLevel.NONE)
+		private String agelimit;
 		private String cast;
-		private String Releasedate;
-		private String trailer;
-		private String language;
+		private String genre;
 		private String length;
+		//private String Releasedate;
+		private String trailer;
+		private String Releasedate;
+		private String language;
 		private String Location;
 		//private String agelimit;,genere
 		
-		public Movies(String id, String Name, String cast, String Releasedate, String trailer, String language, String length, String Location) throws InvalidNameException, InvalidIdLengthException, LocationNotFoundException {
+		public Movies(String id, String Name, String agelimit, String cast ,String genre, String length, String trailer, String Releasedate, String language) throws InvalidNameException, InvalidIdLengthException, LocationNotFoundException {
 			super();
 			this.setId(id);
 			this.setName(Name);
+			this.setAgelimit(agelimit);
 			this.cast = cast;
-			this.Releasedate = Releasedate;
-			this.trailer = trailer;
-			this.language = language;
+			this.genre = genre;
 			this.length = length;
-			this.setLocation(Location);
+			this.trailer = trailer;
+			this.Releasedate = Releasedate;
+			this.language = language;
 		}
 		
 		public Movies() {
