@@ -56,7 +56,7 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-		MoviesService service; 
+		/*MoviesService service; 
 		try {			//getall movies details
 			service = MoviesServiceImpl.getInstance();
 			HashSet<Movies> optional = service.getAllMovieDetails();
@@ -69,7 +69,7 @@ public class Main {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		
