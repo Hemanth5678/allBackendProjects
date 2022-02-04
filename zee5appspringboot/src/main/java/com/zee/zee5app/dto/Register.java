@@ -1,23 +1,22 @@
 package com.zee.zee5app.dto;
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.zee.zee5app.Exception.InvalidIdLengthException;
-import com.zee.zee5app.Exception.InvalidNameException;
+import org.hibernate.annotations.ManyToAny;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -80,9 +79,9 @@ public class Register implements Comparable<Register>{
 	//@Setter(value = AccessLevel.NONE)
 	private String password;
 	
-	@NotBlank
+	//@NotBlank
 	//@Setter(value = AccessLevel.NONE)
-	private BigDecimal contactNumber; //TODO newone
+	private BigDecimal contactnumber; //TODO newone
 	
 	
 	
@@ -132,4 +131,8 @@ public class Register implements Comparable<Register>{
 		return this.id.compareTo(o.getId()); // ascending order
 		//return o.id.compareTo(this.getId()); //descending order
 	}
+	
+	@ManyToMany
+	@JoinTable(name= "user_roles",joinColumns = @JoinColumn(name="regId"),inverseJoinColumns = @ JoinColumn(name="roleId"))
+	private Set<Role> roles = new HashSet<>();
 }

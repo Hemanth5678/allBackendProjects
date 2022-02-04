@@ -16,6 +16,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -26,6 +27,7 @@ import lombok.ToString;
 @Entity  //entity class is used for ORM
 @Table(name = "sub")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Subscriptions implements Comparable<Subscriptions>{
 	
 	@Id	//it will consider this coln as PK.
@@ -33,11 +35,11 @@ public class Subscriptions implements Comparable<Subscriptions>{
 	@Setter(value = AccessLevel.NONE)
 	private String id;
 	
-	@NotNull
-	private Date dop;
+	@NotBlank
+	private String dop;
 	
-	@NotNull
-	private Date expiry;
+	@NotBlank
+	private String expiry;
 	
 	@NotNull
 	private float amount;

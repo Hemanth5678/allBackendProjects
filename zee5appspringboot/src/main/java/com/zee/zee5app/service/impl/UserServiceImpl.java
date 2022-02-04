@@ -6,13 +6,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import com.zee.zee5app.Exception.AlreadyExistsException;
 import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.Exception.InvalidIdLengthException;
 import com.zee.zee5app.Exception.InvalidNameException;
+import com.zee.zee5app.dto.Login;
+import com.zee.zee5app.dto.EROLE;
 import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.repository.LoginRepository;
 import com.zee.zee5app.repository.UserRepository;
+import com.zee.zee5app.service.LoginService;
 //import com.zee.zee5app.repository.UserRepository2;
 //import com.zee.zee5app.repository.impl.UserRepositoryimpl;
 import com.zee.zee5app.service.UserService;
@@ -24,12 +30,18 @@ public class UserServiceImpl implements UserService {
 	// static UserService service;
 	//private static UserRepositoryimpl repository;
 	
-	public UserServiceImpl() throws IOException{
-		// TODO Auto-generated constructor stub
-	}
+//	public UserServiceImpl() throws IOException{
+//		// TODO Auto-generated constructor stub
+//	}
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private LoginService loginService;
+	
+	@Autowired
+	private LoginRepository loginRepository;
 	/*public static UserService getInstance() throws IOException {
 		if(service==null) {
 			service=new UserServiceImpl();
@@ -38,15 +50,33 @@ public class UserServiceImpl implements UserService {
 	}*/
 	
 	//UserRepository userRepository = UserRepositoryimpl.getInstance();
+	
+	
 	@Override
-	public String addUser(Register register) {
+	@org.springframework.transaction.annotation.Transactional(rollbackFor = AlreadyExistsException.class)
+	public String addUser(Register register) throws AlreadyExistsException {
 		// TODO Auto-generated method stub
-		Register register2 = userRepository.save(register);
-		if(register2 != null)
-		{
-			return "success";
+		
+		if(userRepository.existsByEmailAndContactnumber(register.getEmail(), register.getContactnumber()) == true) {
+			throw new AlreadyExistsException("this record already exists");
 		}
-		return "failure";
+		Register register2 = userRepository.save(register);
+		if (register2 != null) {
+			Login login = new Login(register.getEmail(), register.getPassword(), register.getId());
+			if(loginRepository.existsByUserName(register.getEmail())) {
+				throw new AlreadyExistsException("login name already exists");
+			}
+			
+			String result = loginService.addCredentials(login);
+			if(result == "success") {
+				return "record added in register and login";
+			}
+			else {//rollback here
+				return "fail";
+			}
+		}else {
+			return "fail";
+		}
 	}
 
 	@Override
@@ -92,6 +122,8 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return Optional.ofNullable(userRepository.findAll());
 	}
+
+
 
 	
 }

@@ -19,6 +19,7 @@ import com.zee.zee5app.Exception.LocationNotFoundException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -29,6 +30,7 @@ import lombok.ToString;
 @Entity  //entity class is used for ORM
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = "Name")}, name = "mov")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Movies implements Comparable<Movies>{
 	
 		@Id	//it will consider this coln as PK.
@@ -39,7 +41,7 @@ public class Movies implements Comparable<Movies>{
 		@Size(max=50)
 		@NotBlank
 		//@Setter(value = AccessLevel.NONE)
-		private String Name;
+		private String name;
 		//@Setter(value = AccessLevel.NONE)
 		
 		@Max(value=70)
@@ -57,7 +59,7 @@ public class Movies implements Comparable<Movies>{
 		private String trailer;
 		
 		@NotNull
-		private Date Releasedate;
+		private String Releasedate;
 		
 		@NotBlank
 		private String language;

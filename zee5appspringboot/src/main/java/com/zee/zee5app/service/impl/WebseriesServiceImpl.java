@@ -18,7 +18,7 @@ import com.zee.zee5app.service.WebseriesService;
 @Service
 public class WebseriesServiceImpl implements WebseriesService{
 
-	private static WebseriesService service;
+	//private WebseriesService service;
 	//private static WebserieserviceImpl repository;
 	
 	public WebseriesServiceImpl() throws IOException{
@@ -32,7 +32,7 @@ public class WebseriesServiceImpl implements WebseriesService{
 		return service;
 	}*/
 	@Autowired
-	WebseriesRepository WebseriesRepository;// = WebseriesRepositoryImpl.getInstance();
+	public WebseriesRepository WebseriesRepository;// = WebseriesRepositoryImpl.getInstance();
 
 	
 	

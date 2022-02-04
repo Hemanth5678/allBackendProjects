@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.dto.Login;
-import com.zee.zee5app.dto.ROLE;
+import com.zee.zee5app.dto.EROLE;
 import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.dto.Login;
 import com.zee.zee5app.repository.LoginRepository;
@@ -19,8 +19,8 @@ import com.zee.zee5app.service.LoginService;
 @Service
 public class LoginServiceImpl implements LoginService{
 
-	@Autowired
-	private static LoginService service;
+//	@Autowired
+//	private LoginService service;
 	
 	public LoginServiceImpl() throws IOException{
 		// TODO Auto-generated constructor stub
@@ -32,6 +32,7 @@ public class LoginServiceImpl implements LoginService{
 		return service;
 	}*/
 	
+	@Autowired
 	LoginRepository LoginRepository;// = LoginRepositoryImpl.getInstance();
 	@Override
 	public String addCredentials(Login login) {
@@ -61,7 +62,7 @@ public class LoginServiceImpl implements LoginService{
 		return null;
 	}
 	@Override
-	public String changeRole(String userName, ROLE role) {
+	public String changeRole(String userName, EROLE role) {
 		// TODO Auto-generated method stub
 		return null;
 	}

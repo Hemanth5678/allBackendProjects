@@ -8,16 +8,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 
 @Entity  //entity class is used for ORM
 @Table(name = "log")	//set tablename
+@NoArgsConstructor
+@AllArgsConstructor
 public class Login {
 	@Id	//it will consider this coln as PK.
-	@Column(name = "username") // 
-	private String UserName;
+	//@Column(name = "username") // 
+	private String userName;
 	
 	@NotBlank
 	@Size(max=100)
@@ -26,6 +30,4 @@ public class Login {
 	@NotNull
 	private String regid;
 	
-	@NotBlank
-	private ROLE role;
 }

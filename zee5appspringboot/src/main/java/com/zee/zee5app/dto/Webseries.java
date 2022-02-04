@@ -1,10 +1,14 @@
 package com.zee.zee5app.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
@@ -20,6 +24,7 @@ import com.zee.zee5app.Exception.LocationNotFoundException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -30,6 +35,7 @@ import lombok.ToString;
 @Entity  //entity class is used for ORM
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = "Name")}, name = "web")
 @AllArgsConstructor
+@NoArgsConstructor
 public class Webseries implements Comparable<Webseries>{
 	
 			@Id	//it will consider this coln as PK.
@@ -55,8 +61,8 @@ public class Webseries implements Comparable<Webseries>{
 			@NotBlank
 			private String trailer;
 			
-			@NotNull
-			private Date Releasedate;
+			@NotBlank
+			private String Releasedate;
 			
 			@Size(max=50)
 			@NotBlank
@@ -110,4 +116,7 @@ public class Webseries implements Comparable<Webseries>{
 				// TODO Auto-generated method stub
 				return this.id.compareTo(o.getId());
 			}
+			
+			@OneToMany(mappedBy = "series", cascade = CascadeType.ALL)
+			private List<Episodes> episodes = new ArrayList<>();
 }
