@@ -35,6 +35,8 @@ public class Episodes implements Comparable<Movies> {
 	@NotBlank
 	private String episodeName;
 	private int length;
+	
+	private String trailer;
 
 	@Override
 	public int compareTo(Movies o) {
@@ -47,5 +49,6 @@ public class Episodes implements Comparable<Movies> {
 	//this episode table should have a FK
 	@JoinColumn(name = "webId")
 	private Webseries series; //this should take seriesId and that should act as foreign key
+	
 
 }

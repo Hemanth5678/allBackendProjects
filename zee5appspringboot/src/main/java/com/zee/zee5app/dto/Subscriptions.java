@@ -4,6 +4,8 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -57,8 +59,8 @@ public class Subscriptions implements Comparable<Subscriptions>{
 	private String autorenewal;
 	//@Setter(value = AccessLevel.NONE)
 	
-	@NotBlank
-	private String regid;
+	//@NotBlank
+	//private String regid;
 //	public Subscriptions(String id, Date dop, String status, String paymentmode, String autorenewal, Date expiry, float amount, String subscriptiontype, String regid) throws InvalidIdLengthException, InvalidAmountException {
 //		super();
 //		this.setId(id);
@@ -120,5 +122,9 @@ public class Subscriptions implements Comparable<Subscriptions>{
 		return this.id.compareTo(o.getId());
 	}
 	
+	@ManyToOne
+	//this episode table should have a FK
+	@JoinColumn(name = "regId")
+	private Register register;
 	
 }

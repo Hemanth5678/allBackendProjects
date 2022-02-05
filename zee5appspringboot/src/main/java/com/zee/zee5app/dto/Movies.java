@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
@@ -35,7 +36,6 @@ public class Movies implements Comparable<Movies>{
 	
 		@Id	//it will consider this coln as PK.
 		@Column(name = "movId")
-		@Setter(value = AccessLevel.NONE)
 		private String id;
 		
 		@Size(max=50)
@@ -55,7 +55,8 @@ public class Movies implements Comparable<Movies>{
 		private String genre;
 		
 		
-		@NotBlank
+//		@Lob  //Lob: Last object binary
+//		private byte[] trailer;
 		private String trailer;
 		
 		@NotNull
