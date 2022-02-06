@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -122,7 +123,7 @@ public class Subscriptions implements Comparable<Subscriptions>{
 		return this.id.compareTo(o.getId());
 	}
 	
-	@ManyToOne
+	@OneToOne
 	//this episode table should have a FK
 	@JoinColumn(name = "regId")
 	private Register register;

@@ -15,4 +15,4 @@ spring:
         physical-strategy: com.zee.zee5app.utils.CustomNamingStrategy
       ddl-auto: create
 server:
-  port: 9006
+  port: 9005
