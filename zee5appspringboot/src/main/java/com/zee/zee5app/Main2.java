@@ -232,22 +232,22 @@ public class Main2 {
 	
 	////User and subscription
 	
-	UserRepository repository = applicationContext.getBean(UserRepository.class);
-	UserService service = applicationContext.getBean(UserService.class);
-	SubscriptionService subscriptionService = applicationContext.getBean(SubscriptionService.class);
-	
-	Register register12 = new Register("Hemu004","Hemanth","A V","hemu4@gmail.com","iforgotit",null,null,null);
-	try {
-		System.out.println(service.addUser(register12));
-	} catch (AlreadyExistsException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-	Subscriptions subscriptions = new Subscriptions("sub004","2022-02-02","2023-02-02",599.0f,"UPI","active","yearly","yes", register12);
-	System.out.println(subscriptionService.addSubscription(subscriptions));
-	
-	applicationContext.close();
+//	UserRepository repository = applicationContext.getBean(UserRepository.class);
+//	UserService service = applicationContext.getBean(UserService.class);
+//	SubscriptionService subscriptionService = applicationContext.getBean(SubscriptionService.class);
+//	
+//	Register register12 = new Register("Hemu004","Hemanth","A V","hemu4@gmail.com","iforgotit",null,null,null);
+//	try {
+//		System.out.println(service.addUser(register12));
+//	} catch (AlreadyExistsException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	
+//	Subscriptions subscriptions = new Subscriptions("sub004","2022-02-02","2023-02-02",599.0f,"UPI","active","yearly","yes", register12);
+//	System.out.println(subscriptionService.addSubscription(subscriptions));
+//	
+//	applicationContext.close();
 	}
 }
 

@@ -1,5 +1,6 @@
 package com.zee.zee5app.dto;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,9 +18,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.zee.zee5app.utils.CustomListSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -84,9 +90,9 @@ public class Register implements Comparable<Register>{
 	//@Setter(value = AccessLevel.NONE)
 	private String password;
 	
-	//@NotBlank
+	//@NotNull
 	//@Setter(value = AccessLevel.NONE)
-	private BigDecimal contactnumber; //TODO newone
+	private BigInteger contactnumber; //TODO newone
 	
 	
 	
@@ -137,10 +143,17 @@ public class Register implements Comparable<Register>{
 		//return o.id.compareTo(this.getId()); //descending order
 	}
 	
+	//@JsonIgnore
 	@ManyToMany
 	@JoinTable(name= "user_roles",joinColumns = @JoinColumn(name="regId"),inverseJoinColumns = @ JoinColumn(name="roleId"))
 	private Set<Role> roles = new HashSet<>();
 	
+	//@JsonIgnore
 	@OneToOne(mappedBy = "register", cascade = CascadeType.ALL)
 	private Subscriptions subscriptions;
+	
+	@OneToOne(mappedBy = "register", cascade = CascadeType.ALL)
+	@JsonSerialize(using = CustomListSerializer.class)
+	//@JsonIgnore
+	private Login login;
 }

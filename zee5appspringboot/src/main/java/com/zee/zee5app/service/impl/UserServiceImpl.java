@@ -54,28 +54,30 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@org.springframework.transaction.annotation.Transactional(rollbackFor = AlreadyExistsException.class)
-	public String addUser(Register register) throws AlreadyExistsException {
+	public Register addUser(Register register) throws AlreadyExistsException {
 		// TODO Auto-generated method stub
 		
 		if(userRepository.existsByEmailAndContactnumber(register.getEmail(), register.getContactnumber()) == true) {
 			throw new AlreadyExistsException("this record already exists");
+			//throw new NullPointerException("nullpointer");
 		}
 		Register register2 = userRepository.save(register);
 		if (register2 != null) {
-			Login login = new Login(register.getEmail(), register.getPassword(), register.getId());
-			if(loginRepository.existsByUserName(register.getEmail())) {
-				throw new AlreadyExistsException("login name already exists");
-			}
-			
-			String result = loginService.addCredentials(login);
-			if(result == "success") {
-				return "record added in register and login";
-			}
-			else {//rollback here
-				return "fail";
-			}
+//			Login login = new Login(register.getEmail(), register.getPassword(), register.getId());
+//			if(loginRepository.existsByUserName(register.getEmail())) {
+//				throw new AlreadyExistsException("login name already exists");
+//			}
+//			
+//			String result = loginService.addCredentials(login);
+//			if(result == "success") {
+				//return "record added in register and login";
+				return register2;
+//			}
+//			else {//rollback here
+//				return null;
+//			}
 		}else {
-			return "fail";
+			return null;
 		}
 	}
 
@@ -90,9 +92,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<Register> getUserById(String id) throws IdNotFoundException {
+	public Register getUserById(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		return userRepository.findById(id);
+		Optional<Register> optional = userRepository.findById(id);
+		
+		if(optional.isEmpty()) {
+			throw new IdNotFoundException("id doesnt exists");
+		}
+		else {
+			return optional.get();
+		}
 	}
 
 	@Override
@@ -107,9 +116,9 @@ public class UserServiceImpl implements UserService {
 	public String deleteUserById(String id) throws IdNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Optional<Register>optional = this.getUserById(id);
-		if(optional.isEmpty()) {
-			throw new IdNotFoundException("record not found");
+		Register optional = this.getUserById(id);
+		if(optional==null) {
+			throw new IdNotFoundException("user record not found");
 		}
 		else {
 			userRepository.deleteById(id);
