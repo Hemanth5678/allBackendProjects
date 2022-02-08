@@ -32,6 +32,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	
+	
 	@PostMapping("/addUser")
 	public ResponseEntity<?> addUser(@Valid @RequestBody Register register) throws AlreadyExistsException {   // ResponseEntity<?> ,,? :- anytype
 		
