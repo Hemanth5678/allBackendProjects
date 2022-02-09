@@ -1,5 +1,7 @@
 package com.zee.zee5app.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +23,7 @@ public class MovieController {
 	MoviesService moviesService;
 	
 	@PostMapping("/addMovie")
-	public ResponseEntity<?> addMovie(@RequestBody Movies movies) throws AlreadyExistsException {   // ResponseEntity<?> ,,? :- anytype
+	public ResponseEntity<?> addMovie(@Valid @RequestBody Movies movies) throws AlreadyExistsException {   // ResponseEntity<?> ,,? :- anytype
 		
 			String result = moviesService.addMovie(movies);
 			return ResponseEntity.status(201).body(result);

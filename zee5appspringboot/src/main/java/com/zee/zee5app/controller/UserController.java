@@ -38,6 +38,8 @@ public class UserController {
 	public ResponseEntity<?> addUser(@Valid @RequestBody Register register) throws AlreadyExistsException {   // ResponseEntity<?> ,,? :- anytype
 		
 			Register result = userService.addUser(register);
+
+
 			return ResponseEntity.status(201).body(result); //201:new record created
 			
 //		} catch (AlreadyExistsException e) {

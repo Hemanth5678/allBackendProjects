@@ -40,8 +40,6 @@ import lombok.ToString;
 //ORM mapping purpose
 @Entity  //entity class is used for ORM
 @Table(name = "reg")	//set tablename
-
-
 //@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
