@@ -19,7 +19,7 @@ import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.dto.EROLE;
 import com.zee.zee5app.dto.Episodes;
 import com.zee.zee5app.dto.Movies;
-import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.dto.User;
 import com.zee.zee5app.dto.Role;
 import com.zee.zee5app.dto.Subscriptions;
 import com.zee.zee5app.dto.Webseries;

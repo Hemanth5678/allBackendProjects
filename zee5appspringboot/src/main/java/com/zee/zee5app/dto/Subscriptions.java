@@ -126,6 +126,6 @@ public class Subscriptions implements Comparable<Subscriptions>{
 	@OneToOne
 	//this episode table should have a FK
 	@JoinColumn(name = "regId")
-	private Register register;
+	private User register;
 	
 }

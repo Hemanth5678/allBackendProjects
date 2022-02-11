@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.dto.Movies;
-import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.dto.User;
 import com.zee.zee5app.repository.MoviesRepository;
 //import com.zee.zee5app.repository.impl.MoviesRepositoryImpl;
 import com.zee.zee5app.service.MoviesService;

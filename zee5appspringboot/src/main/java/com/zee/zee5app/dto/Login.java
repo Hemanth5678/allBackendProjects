@@ -42,5 +42,5 @@ public class Login {
 	@JoinColumn(name = "regId")// , foreignKey=@ForeignKey(name="fk_regId"))
 	//@JsonProperty(access = Access.WRITE_ONLY)
 	@JsonIgnore
-	private Register register;
+	private User register;
 }

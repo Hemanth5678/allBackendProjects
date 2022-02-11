@@ -24,7 +24,7 @@ public class Role {
 	//it should be the value from available Enums
 	
 	@Enumerated(EnumType.STRING)
-	@Column(length = 30)
+	//@Column(length = 30)
 	private EROLE roleName;
 	
 	
