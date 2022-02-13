@@ -11,5 +11,5 @@ import com.zee.zee5app.dto.Role;
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Integer> {
 
-	Optional<Role> findByRoleName(EROLE roleName);
+	Role findByRoleName(EROLE roleName);
 }

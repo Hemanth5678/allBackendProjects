@@ -1,7 +1,4 @@
 spring:
-  jackson:
-     serialization:
-        fail-on-empty-beans: false
   datasource:
     url: jdbc:mysql://localhost:3306/zee5appjpa
     username: root

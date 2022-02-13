@@ -11,9 +11,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.zee.zee5app.Exception.InvalidAmountException;
 import com.zee.zee5app.Exception.InvalidIdLengthException;
 import com.zee.zee5app.Exception.InvalidNameException;
+import com.zee.zee5app.utils.CustomListSerializer;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -126,6 +130,8 @@ public class Subscriptions implements Comparable<Subscriptions>{
 	@OneToOne
 	//this episode table should have a FK
 	@JoinColumn(name = "regId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+	@JsonIgnore
 	private User register;
 	
 }

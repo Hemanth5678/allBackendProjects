@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -35,6 +37,7 @@ import lombok.ToString;
 public class Movies implements Comparable<Movies>{
 	
 		@Id	//it will consider this coln as PK.
+		//@GeneratedValue(strategy = GenerationType.AUTO)
 		@Column(name = "movId")
 		private String id;
 		
@@ -59,7 +62,7 @@ public class Movies implements Comparable<Movies>{
 //		private byte[] trailer;
 		private String trailer;
 		
-		@NotNull
+		//@NotNull
 		private String Releasedate;
 		
 		@NotBlank

@@ -11,6 +11,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 
+import com.zee.zee5app.utils.PasswordUtils;
+
 @Configuration		//it is used to mark on config class/+es
 //@ComponentScan("com.zee.zee5app")
 //@PropertySource("classpath:application.properties")
@@ -33,4 +35,8 @@ public class Config {
 //		
 //	}
 	
+//	@Bean
+//	public PasswordUtils passwordUtils() {
+//		return new PasswordUtils();
+//	}
 }

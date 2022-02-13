@@ -96,7 +96,7 @@ public class UserController {
 		Set<Role> roles = new HashSet<>();
 		
 		if(strRoles == null) {
-			Role userRole = roleRepository.findByRoleName(EROLE.ROLE_USER).orElseThrow(()->new RuntimeException("Error: role not found"));
+			Role userRole = roleRepository.findByRoleName(EROLE.ROLE_USER);//.orElseThrow(()->new RuntimeException("Error: role not found"));
 			roles.add(userRole);
 		}
 		else {
@@ -104,17 +104,18 @@ public class UserController {
 				switch(e) {
 				
 				case "admin":
-					Role roleAdmin = roleRepository.findByRoleName(EROLE.ROLE_ADMIN).orElseThrow(()->new RuntimeException("Error: role not found"));
+					Role roleAdmin = roleRepository.findByRoleName(EROLE.ROLE_ADMIN);//.orElseThrow(()->new RuntimeException("Error: role not found"));
 					roles.add(roleAdmin);
+					System.out.println(roles);
 					break;
 					
 				case "mod":
-					Role roleMod = roleRepository.findByRoleName(EROLE.ROLE_MODERATOR).orElseThrow(()->new RuntimeException("Error: role not found"));
+					Role roleMod = roleRepository.findByRoleName(EROLE.ROLE_MODERATOR);//.orElseThrow(()->new RuntimeException("Error: role not found"));
 					roles.add(roleMod);
 					break;
 
 				default:
-					Role userRole = roleRepository.findByRoleName(EROLE.ROLE_USER).orElseThrow(()->new RuntimeException("Error: role not found"));
+					Role userRole = roleRepository.findByRoleName(EROLE.ROLE_USER);//.orElseThrow(()->new RuntimeException("Error: role not found"));
 					roles.add(userRole);
 					break;
 				}
