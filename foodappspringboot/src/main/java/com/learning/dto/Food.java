@@ -1,5 +1,6 @@
 package com.learning.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,6 +35,7 @@ public class Food {
 	private float foodCost;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
 	private TYPE foodType;
 	
 	private String description;

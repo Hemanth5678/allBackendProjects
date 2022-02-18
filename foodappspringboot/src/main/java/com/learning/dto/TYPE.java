@@ -4,5 +4,5 @@ public enum TYPE {
 
 	INDIAN,
 	CHINESE,
-	MEXICAN
+	MEXICAN;
 }

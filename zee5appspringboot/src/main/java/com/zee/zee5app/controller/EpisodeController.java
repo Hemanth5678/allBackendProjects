@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ import com.zee.zee5app.Exception.InvalidIdLengthException;
 import com.zee.zee5app.Exception.NameNotFoundException;
 import com.zee.zee5app.dto.Episodes;
 import com.zee.zee5app.service.EpisodeService;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/episode")
 public class EpisodeController {
