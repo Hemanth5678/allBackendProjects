@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Users addUser(Users users) throws AlreadyExistsException{
 		// TODO Auto-generated method stub
-		if(userRepository.existsByEmailAndName(users.getEmail(), users.getName()) == true) {
+		if(userRepository.existsByEmailAndUsername(users.getEmail(), users.getUsername()) == true) {
 			throw new AlreadyExistsException("this record already exists");
 		}
 		Users user = userRepository.save(users);

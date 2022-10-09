@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.zee.zee5app.Exception.IdNotFoundException;
-import com.zee.zee5app.dto.Register;
+//import com.zee.zee5app.dto.Register;
 import com.zee.zee5app.dto.Subscriptions;
 
 public interface SubscriptionService {

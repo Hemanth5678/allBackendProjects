@@ -9,6 +9,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,14 +43,12 @@ import lombok.ToString;
 @ToString
 //ORM mapping purpose
 @Entity  //entity class is used for ORM
-@Table(name = "reg")	//set tablename
-
-
+@Table(name = "reg",uniqueConstraints = {@UniqueConstraint(columnNames = "username"),@UniqueConstraint(columnNames = "email")})//set tablename & unique cols
 //@EqualsAndHashCode
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 //@Data
-public class Register implements Comparable<Register>{
+public class User implements Comparable<User>{
 //	@Override
 //	public int hashCode() {
 //		return Objects.hash(email, firstName, id, lastName, password);
@@ -68,7 +70,12 @@ public class Register implements Comparable<Register>{
 	@Id	//it will consider this coln as PK.
 	@Column(name = "regId") // specify col name
 	//@Setter(value = AccessLevel.NONE)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	@NotBlank
+	@Size(max=20)
+	private String username;
 	
 	@Size(max=50)
 	@NotBlank
@@ -137,15 +144,15 @@ public class Register implements Comparable<Register>{
 //	}
 	
 	@Override
-	public int compareTo(Register o) {
+	public int compareTo(User o) {
 		// TODO Auto-generated method stub
 		return this.id.compareTo(o.getId()); // ascending order
 		//return o.id.compareTo(this.getId()); //descending order
 	}
 	
 	//@JsonIgnore
-	@ManyToMany
-	@JoinTable(name= "user_roles",joinColumns = @JoinColumn(name="regId"),inverseJoinColumns = @ JoinColumn(name="roleId"))
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name= "user_roles",joinColumns = @JoinColumn(name="regId"),inverseJoinColumns = @JoinColumn(name="roleId"))
 	private Set<Role> roles = new HashSet<>();
 	
 	//@JsonIgnore
@@ -156,4 +163,12 @@ public class Register implements Comparable<Register>{
 	@JsonSerialize(using = CustomListSerializer.class)
 	//@JsonIgnore
 	private Login login;
+	
+	public User(String username, String email, String password, String firstName, String lastName) {
+		this.username=username;
+		this.email=email;
+		this.password=password;
+		this.firstName=firstName;
+		this.lastName=lastName;
+	}
 }

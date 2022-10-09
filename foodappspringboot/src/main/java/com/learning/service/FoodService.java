@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.learning.dto.Food;
 import com.learning.exception.AlreadyExistsException;
+import com.learning.exception.FoodTypeNotFoundException;
 import com.learning.exception.IdNotFoundException;
 
 public interface FoodService {
@@ -15,4 +16,5 @@ public interface FoodService {
 	public Food[] getAllFood();
 	public String deleteFoodById(Integer id) throws IdNotFoundException;
 	public Optional<List<Food>> getAllFoodDetails();
+	public Optional<List<Food>>getFoodByType(String foodType) throws FoodTypeNotFoundException;
 }

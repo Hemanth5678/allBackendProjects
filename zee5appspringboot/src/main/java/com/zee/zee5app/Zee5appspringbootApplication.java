@@ -15,7 +15,7 @@ import com.zee.zee5app.Exception.AlreadyExistsException;
 import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.Exception.InvalidIdLengthException;
 import com.zee.zee5app.Exception.InvalidNameException;
-import com.zee.zee5app.dto.Register;
+import com.zee.zee5app.dto.User;
 import com.zee.zee5app.dto.Subscriptions;
 import com.zee.zee5app.repository.UserRepository;
 import com.zee.zee5app.service.SubscriptionService;

@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import com.zee.zee5app.Exception.IdNotFoundException;
 import com.zee.zee5app.dto.Movies;
-import com.zee.zee5app.dto.Register;
 
 public interface MoviesService {
 	public String addMovie(Movies Movies);

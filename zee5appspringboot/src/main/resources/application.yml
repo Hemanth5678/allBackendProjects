@@ -1,7 +1,4 @@
 spring:
-  jackson:
-     serialization:
-        fail-on-empty-beans: false
   datasource:
     url: jdbc:mysql://localhost:3306/zee5appjpa
     username: root
@@ -19,6 +16,9 @@ spring:
       ddl-auto: update
 server:
   port: 9005
-  servlet:
-    context-path: /api
-    
+#  servlet:
+#    context-path: /api
+zee5app:
+  app:
+    jwtSecret: secretkey
+    jwtExpirationMs: 86400000

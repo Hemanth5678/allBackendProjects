@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learning.dto.Food;
+import com.learning.dto.TYPE;
 import com.learning.dto.Users;
 import com.learning.exception.AlreadyExistsException;
+import com.learning.exception.FoodTypeNotFoundException;
 import com.learning.exception.IdNotFoundException;
 import com.learning.repository.FoodRepository;
 import com.learning.repository.UserRepository;
@@ -82,6 +84,17 @@ public class FoodServiceImpl implements FoodService{
 	public Optional<List<Food>> getAllFoodDetails() {
 		// TODO Auto-generated method stub
 		return Optional.ofNullable(foodRepository.findAll());
+	}
+
+	@Override
+	public Optional<List<Food>> getFoodByType(String foodType) throws FoodTypeNotFoundException {
+		// TODO Auto-generated method stub
+		Optional<List<Food>> foodDetailsByType = foodRepository.findByFoodType(TYPE.valueOf(foodType));
+		
+		if(foodDetailsByType.get().isEmpty()) {
+			throw new FoodTypeNotFoundException("Sorry, Food Type Not Found");
+		}
+		return foodDetailsByType;
 	}
 
 

@@ -17,7 +17,7 @@ import com.zee.zee5app.service.RoleService;
 public class RoleServiceImpl implements RoleService{
 
 	@Autowired
-	private RoleRepository Rolerepository;
+	RoleRepository Rolerepository;
 	
 	@Override
 	@org.springframework.transaction.annotation.Transactional(rollbackFor = Exception.class)
